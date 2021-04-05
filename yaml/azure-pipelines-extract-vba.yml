@@ -26,13 +26,21 @@ steps:
   clean: true
 
 - script: |
-    echo Set Requester as $(Build.RequestedFor) $(Build.RequestedForEmail)
+    echo Set Requestor as $(Build.RequestedFor) $(Build.RequestedForEmail)
     git config --global user.email $(Build.RequestedForEmail)
     git config --global user.name $(Build.RequestedFor)
-    export branchname=$(echo $(Build.SourceBranch) | sed s@refs/heads/@@)
+    if ["$(System.PullRequest.SourceBranch)" = ""]; then
+      echo Checkout for branch $(Build.SourceBranch)
+      export branchname=$(echo $(Build.SourceBranch) | sed s@refs/heads/@@)
+    else
+      echo Checkout for PR source branch $(System.PullRequest.SourceBranch)
+      export branchname=$(echo $(System.PullRequest.SourceBranch) | sed s@refs/heads/@@)      
+    fi
     echo Checkout for branch-name $branchname
+    git remote update
+    git fetch origin $branchname
     git checkout $branchname
-  displayName: 'Configuration to git commit/push.'
+  displayName: 'Set the configuration for git commit/push.'
 
 - script: |
     echo Install pipenv
