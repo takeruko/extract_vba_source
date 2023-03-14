@@ -4,4 +4,4 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-oletools = "*"
+oletools = {file = https://github.com/kijeong/oletools/archive/refs/heads/add/projectcompatversion_record.zip}
