@@ -56,7 +56,7 @@ steps:
     pipenv install
     pipenv run python ./extract_vba_source/extract_vba_source.py \
                       --dest $(VBA_DIR) \
-                      --src-encoding='shift_jis' \
+                      --src-encoding='cp932' \
                       --out-encoding='utf8' \
                       --recursive \
                       $(TARGET_DIR)

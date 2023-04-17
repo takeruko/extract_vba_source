@@ -19,8 +19,8 @@ def get_args():
                         help='Destination directory path to output vba source files [default: ./vba_src].')
     parser.add_argument('--orig-extension', dest='use_orig_extension', action='store_true',
                         help='Use an original extension (.bas, .cls, .frm) for extracted vba source files [default: use .vb].')
-    parser.add_argument('--src-encoding', dest='src_encoding', type=str, default='shift_jis',
-                        help='Encoding for vba source files in an MS Office file [default: shift_jis].')
+    parser.add_argument('--src-encoding', dest='src_encoding', type=str, default='cp932',
+                        help='Encoding for vba source files in an MS Office file [default: cp932].')
     parser.add_argument('--out-encoding', dest='out_encoding', type=str, default='utf8',
                         help='Encoding for generated vba source files [default: utf8].')
     parser.add_argument('--recursive', action='store_true',
